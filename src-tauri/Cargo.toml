@@ -5,7 +5,7 @@ description = "A Tauri Solid TypeScript Tailwind Vite App Test"
 authors = ["oezguerisbert"]
 license = "MIT"
 repository = "https://github.com/oetzilabs/tauri-test"
-default-run = "app"
+default-run = "tauri-test"
 edition = "2021"
 build = "src/build.rs"
 
