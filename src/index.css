@@ -75,7 +75,7 @@
     @apply bg-background text-foreground !w-screen !h-screen;
   }
   body {
-    @apply bg-background text-foreground !w-screen !h-screen;
+    @apply bg-background text-foreground !w-screen !h-screen text-sm;
   }
 
   #root {

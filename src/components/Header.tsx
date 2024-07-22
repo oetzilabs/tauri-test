@@ -1,29 +1,33 @@
 import { A, useLocation } from '@solidjs/router'
 import { window } from '@tauri-apps/api'
 import { X } from 'lucide-solid'
+import { JSX, splitProps } from 'solid-js'
+import { cn } from '../libs/cn'
 import { Button } from './ui/button'
 
-export default function Header() {
+const LinkButton = (props: { href: string; class?: string; children: JSX.Element }) => {
   const location = useLocation()
+  const [local, rest] = splitProps(props, ['href', 'class', 'children'])
+  return (
+    <Button
+      as={A}
+      href={local.href}
+      size="sm"
+      variant={location.pathname === local.href ? 'default' : 'outline'}
+      {...rest}
+      class={local.class}
+    >
+      {local.children}
+    </Button>
+  )
+}
+
+export default function Header() {
   return (
     <header class="p-2 bg-background border-b border-neutral-200 w-full container flex flex-row justify-between items-center gap-2">
       <div class="flex flex-row gap-2">
-        <Button
-          as={A}
-          href="/"
-          size="sm"
-          variant={location.pathname === '/' ? 'default' : 'ghost'}
-        >
-          Home
-        </Button>
-        <Button
-          as={A}
-          href="/status"
-          size="sm"
-          variant={location.pathname === '/status' ? 'default' : 'ghost'}
-        >
-          Status
-        </Button>
+        <LinkButton href="/">Home</LinkButton>
+        <LinkButton href="/status">Status</LinkButton>
       </div>
       <Button
         size="icon"
